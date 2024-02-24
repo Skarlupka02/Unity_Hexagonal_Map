@@ -6,6 +6,8 @@ public class HexMetrics : MonoBehaviour
 {
     public const float outerRadius = 10f;
     public const float innerRadius = outerRadius * 0.866025404f;
+    public const float solidFactor = 0.75f;
+    public const float blendFactor = 1f - solidFactor;
 
     static Vector3[] corners =
     {
@@ -25,15 +27,13 @@ public class HexMetrics : MonoBehaviour
     {
         return corners[((int)direction) + 1];
     }
-    // Start is called before the first frame update
-    void Start()
+    public static Vector3 GetFirstSolidCorner(HexDirection direction)
     {
-        
+        return corners[(int)direction] * solidFactor;
+    }
+    public static Vector3 GetSecondSolidCorner(HexDirection direction)
+    {
+        return corners[((int)direction) + 1] * solidFactor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

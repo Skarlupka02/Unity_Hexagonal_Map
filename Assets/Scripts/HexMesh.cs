@@ -51,13 +51,12 @@ public class HexMesh : MonoBehaviour
     void Triangulate(HexDirection direction, HexCell cell)
     {
         Vector3 center = cell.transform.localPosition;
-        AddTriangle(center, center + HexMetrics.GetFirstCorner(direction), center + HexMetrics.GetSecondCorner(direction));
+        AddTriangle(center, center + HexMetrics.GetFirstSolidCorner(direction), center + HexMetrics.GetSecondSolidCorner(direction));
         
         HexCell prevNeighbor = cell.GetNeighbor(direction.Previous()) ?? cell;
         HexCell neighbor = cell.GetNeighbor(direction) ?? cell;
         HexCell nextNeighbor = cell.GetNeighbor(direction.Next()) ?? cell;
         
-        //Color edgeColor = (cell.color + neighbor.color) * 0.5f;
         AddTriangleColor(
             cell.color, 
             (cell.color + prevNeighbor.color + neighbor.color) / 3f, 
@@ -79,16 +78,5 @@ public class HexMesh : MonoBehaviour
         colors.Add(c1);
         colors.Add(c2);
         colors.Add(c3);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
