@@ -13,7 +13,7 @@ public class HexGrid : MonoBehaviour
     public Text cellLabelPrefab;
 
     public Color defaultColor = Color.white;
-    public Color touchedColor = Color.magenta;
+    //public Color touchedColor = Color.magenta;
 
     HexCell[] cells;
     Canvas gridCanvas;
@@ -52,26 +52,15 @@ public class HexGrid : MonoBehaviour
     }
 
     #region Косание ячеек
-    private void Update()
-    {
-        if(Input.GetMouseButtonDown(0)) { HandleInput(); }
-    }
-    void HandleInput ()
-    {
-        Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(inputRay, out hit)) { TouchCell(hit.point); }
-    }
-    void TouchCell(Vector3 position)
+    public void ColorCell(Vector3 position, Color color)
     {
         position = transform.InverseTransformPoint(position);
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
         int index = coordinates.X + coordinates.Z * width + coordinates.Z / 2;
         HexCell cell = cells[index];
-        if(cell.color == defaultColor) { cell.color = touchedColor; }
-        else { cell.color = defaultColor; }
+        cell.color = color;
         hexMesh.Triangulate(cells);
-        Debug.Log("touch at" + position + "/n" + coordinates.ToString());
+        Debug.Log("touch at" + position + "/" + coordinates.ToString() + "/" + index + "/" + color.ToString()) ;
     }
     #endregion
     // Start is called before the first frame update
