@@ -8,6 +8,8 @@ public class HexCell : MonoBehaviour
 
     public Color color;
 
+    public int elevation;
+
     [SerializeField]
     HexCell[] neighbors;
 
