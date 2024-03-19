@@ -9,6 +9,7 @@ public class HexCell : MonoBehaviour
     public Color color;
 
     int elevation;
+    public RectTransform uiRect;
 
     [SerializeField]
     HexCell[] neighbors;
@@ -34,6 +35,10 @@ public class HexCell : MonoBehaviour
             Vector3 position = transform.localPosition;
             position.y = value * HexMetrics.elevationStep;
             transform.localPosition = position;
+
+            Vector3 uiPosition = uiRect.localPosition;
+            uiPosition.z = elevation * -HexMetrics.elevationStep;
+            uiRect.localPosition = uiPosition;
         }
     }
     // Start is called before the first frame update
