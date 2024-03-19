@@ -8,7 +8,7 @@ public class HexCell : MonoBehaviour
 
     public Color color;
 
-    public int elevation;
+    int elevation;
 
     [SerializeField]
     HexCell[] neighbors;
@@ -22,7 +22,20 @@ public class HexCell : MonoBehaviour
         neighbors[(int)direction] = cell;
         cell.neighbors[(int)direction.Opposite()] = this;
     }
-
+    public int Elevation
+    {
+        get
+        {
+            return elevation;
+        }
+        set
+        {
+            elevation = value;
+            Vector3 position = transform.localPosition;
+            position.y = value * HexMetrics.elevationStep;
+            transform.localPosition = position;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
