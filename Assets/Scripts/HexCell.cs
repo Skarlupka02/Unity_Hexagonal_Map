@@ -41,6 +41,11 @@ public class HexCell : MonoBehaviour
             uiRect.localPosition = uiPosition;
         }
     }
+    
+    public HexEdgeType GetEdgeType(HexDirection direction)
+    {
+        return HexMetrics.GetEdgeType(elevation, neighbors[(int)direction].elevation);
+    }
     // Start is called before the first frame update
     void Start()
     {
