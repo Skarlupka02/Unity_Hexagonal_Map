@@ -134,6 +134,18 @@ public class HexMesh : MonoBehaviour
                 {
                     TriangulateCorner(v2, cell, v4, neighbor, v5, nextNeighbor);
                 }
+                else
+                {
+                    TriangulateCorner(v5, nextNeighbor, v2, cell, v4, neighbor);
+                }
+            }
+            else if(neighbor.Elevation <= nextNeighbor.Elevation)
+            {
+                TriangulateCorner(v4, neighbor, v5, nextNeighbor, v2, cell);
+            }
+            else
+            {
+                TriangulateCorner(v5, nextNeighbor, v2, cell, v4, neighbor);
             }
             //AddTriangle(v2, v4, v5);
             //AddTriangleColor(cell.color, neighbor.color, nextNeighbor.color);
