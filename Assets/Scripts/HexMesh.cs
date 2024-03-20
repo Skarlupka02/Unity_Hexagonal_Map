@@ -190,6 +190,19 @@ public class HexMesh : MonoBehaviour
                 TriangulateCornerTerraces(bottom, bottomCell, left, leftCell, right, rightCell);
                 return;
             }
+            if(rightEdgeType == HexEdgeType.Flat)
+            {
+                TriangulateCornerTerraces(left, leftCell, right, rightCell, bottom, bottomCell);
+                return;
+            }
+        }
+        if(rightEdgeType == HexEdgeType.Slope)
+        {
+            if(leftEdgeType == HexEdgeType.Flat)
+            {
+                TriangulateCornerTerraces(right, rightCell, bottom, bottomCell, left, leftCell);
+                return;
+            }
         }
         AddTriangle(bottom, left, right);
         AddTriangleColor(bottomCell.color, leftCell.color, rightCell.color);
