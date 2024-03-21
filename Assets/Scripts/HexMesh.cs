@@ -251,13 +251,32 @@ public class HexMesh : MonoBehaviour
         Vector3 boundary = Vector3.Lerp(begin, right, b);
         Color boundaryColor = Color.Lerp(beginCell.color, rightCell.color, b);
 
+        TriangulateBoundaryTriangle(begin, beginCell, left, leftCell, boundary, boundaryColor );
+
+        if(leftCell.GetEdgeType(rightCell) == HexEdgeType.Slope)
+        {
+            TriangulateBoundaryTriangle(left, leftCell, right, rightCell, boundary, boundaryColor);
+        }
+        else
+        {
+            AddTriangle(left, right, boundary);
+            AddTriangleColor(leftCell.color, rightCell.color, boundaryColor);
+        }
+    }
+
+void TriangulateBoundaryTriangle(
+        Vector3 begin, HexCell beginCell,
+        Vector3 left, HexCell leftCell,
+        Vector3 boundary, Color boundaryColor
+    )
+    {
         Vector3 v2 = HexMetrics.TerraceLerp(begin, left, 1);
         Color c2 = HexMetrics.TerraceLerp(beginCell.color, leftCell.color, 1);
 
         AddTriangle(begin, v2, boundary);
         AddTriangleColor(beginCell.color, c2, boundaryColor);
 
-        for(int i = 2; i < HexMetrics.terracesSteps; i++)
+        for (int i = 2; i < HexMetrics.terracesSteps; i++)
         {
             Vector3 v1 = v2;
             Color c1 = c2;
