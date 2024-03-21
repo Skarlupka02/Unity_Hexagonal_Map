@@ -185,31 +185,32 @@ public class HexMesh : MonoBehaviour
 
         if(leftEdgeType == HexEdgeType.Slope)
         {
-            if(rightEdgeType == HexEdgeType.Slope)
+            if (rightEdgeType == HexEdgeType.Slope)
             {
                 TriangulateCornerTerraces(bottom, bottomCell, left, leftCell, right, rightCell);
-                return;
             }
-            if(rightEdgeType == HexEdgeType.Flat)
+            else if (rightEdgeType == HexEdgeType.Flat)
             {
                 TriangulateCornerTerraces(left, leftCell, right, rightCell, bottom, bottomCell);
-                return;
             }
-            TriangulateCornerTerracesCliff(bottom, bottomCell, left, leftCell, right, rightCell );
-            return;
+            else 
+            { 
+                TriangulateCornerTerracesCliff(bottom, bottomCell, left, leftCell, right, rightCell); 
+            }
         }
-        if(rightEdgeType == HexEdgeType.Slope)
+        else if(rightEdgeType == HexEdgeType.Slope)
         {
-            if(leftEdgeType == HexEdgeType.Flat)
+            if (leftEdgeType == HexEdgeType.Flat)
             {
                 TriangulateCornerTerraces(right, rightCell, bottom, bottomCell, left, leftCell);
-                return;
             }
-            TriangulateCornerCliffTerraces(bottom, bottomCell, left, leftCell, right, rightCell);
-            return;
+            else
+            {
+                TriangulateCornerCliffTerraces(bottom, bottomCell, left, leftCell, right, rightCell);
+            }
         }
 
-        if(leftCell.GetEdgeType(rightCell) == HexEdgeType.Slope)
+        else if(leftCell.GetEdgeType(rightCell) == HexEdgeType.Slope)
         {
             if(leftCell.Elevation < rightCell.Elevation)
             {
@@ -219,11 +220,12 @@ public class HexMesh : MonoBehaviour
             {
                 TriangulateCornerTerracesCliff(left, leftCell, right, rightCell, bottom, bottomCell);
             }
-            return;
         }
-
-        AddTriangle(bottom, left, right);
-        AddTriangleColor(bottomCell.color, leftCell.color, rightCell.color);
+        else
+        {
+            AddTriangle(bottom, left, right);
+            AddTriangleColor(bottomCell.color, leftCell.color, rightCell.color);
+        } 
     }
     void TriangulateCornerTerraces(
         Vector3 begin, HexCell beginCell,
