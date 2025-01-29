@@ -6,6 +6,7 @@ using System;
 
 public class HexGrid : MonoBehaviour
 {
+    public Texture2D noiseSourse;
     public int width = 6;
     public int height = 6;
 
@@ -21,6 +22,7 @@ public class HexGrid : MonoBehaviour
 
     private void Awake()
     {
+        HexMetrics.noiseSource = noiseSourse;
         hexMesh= GetComponentInChildren<HexMesh>();
         gridCanvas = GetComponentInChildren<Canvas>();
 
@@ -92,5 +94,10 @@ public class HexGrid : MonoBehaviour
     void Start()
     {
         hexMesh.Triangulate(cells);
+    }
+
+    private void OnEnable()
+    {
+        HexMetrics.noiseSource = noiseSourse;
     }
 }
