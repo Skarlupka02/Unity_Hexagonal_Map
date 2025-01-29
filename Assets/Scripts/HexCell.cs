@@ -52,6 +52,10 @@ public class HexCell : MonoBehaviour
     {
         return HexMetrics.GetEdgeType(elevation, otherCell.elevation);
     }
+    public Vector3 Position
+    {
+        get { return transform.localPosition; }
+    }
     // Start is called before the first frame update
     void Start()
     {
