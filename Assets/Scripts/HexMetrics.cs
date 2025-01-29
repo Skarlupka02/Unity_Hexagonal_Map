@@ -5,6 +5,7 @@ using UnityEngine;
 public class HexMetrics : MonoBehaviour
 {
     public static Texture2D noiseSource;
+    public const float cellPerturbStrength = 5f;
     public const float outerRadius = 10f;
     public const float innerRadius = outerRadius * 0.866025404f;
     public const float solidFactor = 0.75f;
