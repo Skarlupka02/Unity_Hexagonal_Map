@@ -17,6 +17,7 @@ public class HexMetrics : MonoBehaviour
     public const int terracesSteps = terracesPerSlope * 2 + 1;
     public const float horizontalTerraceStepSize = 1f / terracesSteps;
     public const float verticalTerraceStepSize = 1f / (terracesPerSlope + 1);
+    public const int chunkSizeX = 5, chunkSizeZ = 5;
 
     static Vector3[] corners =
     {
