@@ -6,6 +6,7 @@ using System;
 
 public class HexGrid : MonoBehaviour
 {
+    public HexGridChunk chunkPrefab;
     public Texture2D noiseSourse;
     //public int cellCountX = 4;
     //public int cellCountZ = 3;
@@ -20,6 +21,7 @@ public class HexGrid : MonoBehaviour
     //public Color touchedColor = Color.magenta;
 
     HexCell[] cells;
+    HexGridChunk[] chunks;
     Canvas gridCanvas;
     HexMesh hexMesh;
 
@@ -34,6 +36,7 @@ public class HexGrid : MonoBehaviour
         cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
         CreateCells();
+        CreateChunks();
 
     }
     void CreateCells()
@@ -86,6 +89,19 @@ public class HexGrid : MonoBehaviour
         cell.uiRect = label.rectTransform;
 
         cell.Elevation = 0;
+    }
+    void CreateChunks()
+    {
+        chunks = new HexGridChunk[chunkCountX * chunkCountZ];
+
+        for (int z = 0, i = 0; z < chunkCountZ; z++)
+        {
+            for (int x = 0; x < chunkCountX; x++)
+            {
+                HexGridChunk chunk = chunks[i++] = Instantiate(chunkPrefab);
+                chunk.transform.SetParent(transform);
+            }
+        }
     }
 
     #region Косание ячеек
