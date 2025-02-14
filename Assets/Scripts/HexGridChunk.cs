@@ -19,19 +19,26 @@ public class HexGridChunk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hexMesh.Triangulate(cells);
+        //hexMesh.Triangulate(cells);
     }
 
     public void AddCell(int index, HexCell cell)
     {
         cells[index] = cell;
+        cell.chunk = this;
         cell.transform.SetParent(transform, false);
         cell.uiRect.SetParent(gridCanvas.transform, false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Refresh()
     {
-        
+        //hexMesh.Triangulate(cells);
+        enabled = true;
+    }
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        hexMesh.Triangulate(cells);
+        enabled = false;
     }
 }
