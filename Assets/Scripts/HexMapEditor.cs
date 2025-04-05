@@ -68,8 +68,6 @@ public class HexMapEditor : MonoBehaviour
                 cell.Elevation = activeElevation;
             }
         }
-        
-        //hexGrid.Refresh();
     }
     public void SelectColor(int index)
     {

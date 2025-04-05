@@ -125,10 +125,6 @@ public class HexGrid : MonoBehaviour
         HexCoordinates coordinates = HexCoordinates.FromPosition(position);
         int index = coordinates.X + coordinates.Z * cellCountX + coordinates.Z / 2;
         return cells[index];
-        //HexCell cell = cells[index];
-        //cell.color = color;
-        //hexMesh.Triangulate(cells);
-        //Debug.Log("touch at" + position + "/" + coordinates.ToString() + "/" + index + "/" + color.ToString()) ;
     }
     public HexCell GetCell (HexCoordinates coordinates)
     {
