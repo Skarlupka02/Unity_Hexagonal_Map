@@ -10,6 +10,8 @@ public class HexMapEditor : MonoBehaviour
     public Color[] colors;
     public HexGrid hexGrid;
     private Color activeColor;
+    bool applyColor;
+    bool applyElevation = true;
     int activeElevation;
 
     void Awake()
@@ -35,14 +37,28 @@ public class HexMapEditor : MonoBehaviour
     }
     void EditCell(HexCell cell)
     {
-
-        cell.Color = activeColor;
-        cell.Elevation = activeElevation;
+        if(applyColor)
+        {
+            cell.Color = activeColor;
+        }
+        if (applyElevation)
+        {
+            cell.Elevation = activeElevation;
+        }
         //hexGrid.Refresh();
     }
     public void SelectColor(int index)
     {
+        applyColor = index >= 0;
+        if (applyColor) { 
+            activeColor = colors[index];
+        }
         activeColor = colors[index];
+    }
+
+    public void SetApplyElevation (bool elevation)
+    {
+        applyElevation = elevation;
     }
     // Start is called before the first frame update
     void Start()
