@@ -53,7 +53,6 @@ public class HexMapEditor : MonoBehaviour
         if (applyColor) { 
             activeColor = colors[index];
         }
-        activeColor = colors[index];
     }
 
     public void SetApplyElevation (bool elevation)
