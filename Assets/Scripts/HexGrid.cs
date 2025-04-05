@@ -130,6 +130,20 @@ public class HexGrid : MonoBehaviour
         //hexMesh.Triangulate(cells);
         //Debug.Log("touch at" + position + "/" + coordinates.ToString() + "/" + index + "/" + color.ToString()) ;
     }
+    public HexCell GetCell (HexCoordinates coordinates)
+    {
+        int z = coordinates.Z;
+        if(z < 0 || z >= cellCountZ)
+        {
+            return null;
+        }
+        int x = coordinates.X + z / 2;
+        if(x < 0 || x >= cellCountX)
+        {
+            return null;
+        }
+        return cells[x + z * cellCountX];
+    }
     public void Refresh()
     {
         //hexMesh.Triangulate(cells);
