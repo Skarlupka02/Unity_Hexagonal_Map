@@ -15,6 +15,7 @@ public class HexGridChunk : MonoBehaviour
         hexMesh = GetComponentInChildren<HexMesh>();
 
         cells = new HexCell[HexMetrics.chunkSizeX * HexMetrics.chunkSizeZ];
+        ShowUI(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -40,5 +41,9 @@ public class HexGridChunk : MonoBehaviour
     {
         hexMesh.Triangulate(cells);
         enabled = false;
+    }
+    public void ShowUI(bool visible)
+    {
+        gridCanvas.gameObject.SetActive(visible);
     }
 }

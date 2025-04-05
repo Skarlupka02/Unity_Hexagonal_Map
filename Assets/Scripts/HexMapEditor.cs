@@ -57,7 +57,6 @@ public class HexMapEditor : MonoBehaviour
     }
     void EditCell(HexCell cell)
     {
-        Debug.Log(brushSize);
         if (cell)
         {
             if (applyColor)
@@ -88,6 +87,10 @@ public class HexMapEditor : MonoBehaviour
     public void SetBrushSize (float size)
     {
         brushSize = (int)size;
+    }
+    public void ShowUI(bool visible)
+    {
+        hexGrid.ShowUI(visible);
     }
     // Start is called before the first frame update
     void Start()

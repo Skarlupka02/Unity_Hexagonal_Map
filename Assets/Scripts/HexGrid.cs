@@ -159,4 +159,11 @@ public class HexGrid : MonoBehaviour
     {
         HexMetrics.noiseSource = noiseSourse;
     }
+    public void ShowUI(bool visible)
+    {
+        for (int i = 0; i < chunks.Length; i++)
+        {
+            chunks[i].ShowUI(visible);
+        }
+    }
 }
