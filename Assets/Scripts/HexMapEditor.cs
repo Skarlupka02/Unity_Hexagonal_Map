@@ -13,6 +13,7 @@ public class HexMapEditor : MonoBehaviour
     bool applyColor;
     bool applyElevation = true;
     int activeElevation;
+    int brushSize;
 
     void Awake()
     {
@@ -58,6 +59,11 @@ public class HexMapEditor : MonoBehaviour
     public void SetApplyElevation (bool elevation)
     {
         applyElevation = elevation;
+    }
+
+    public void SetBrushSize (float size)
+    {
+        brushSize = (int)size;
     }
     // Start is called before the first frame update
     void Start()
