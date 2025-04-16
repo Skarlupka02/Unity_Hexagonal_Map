@@ -1088,8 +1088,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkPrefab: {fileID: 3214414500603338785, guid: bfe2a33909230fe4795618b5804e230d, type: 3}
   noiseSourse: {fileID: 2800000, guid: 208e2e9a9e4232f49a14bdf1c9465f9f, type: 3}
-  chunkCountX: 4
-  chunkCountZ: 3
+  chunkCountX: 10
+  chunkCountZ: 10
   cellPrefab: {fileID: 521237977120865656, guid: bbbfc3c366dab1b40a81ab82fb176993, type: 3}
   cellLabelPrefab: {fileID: 5038164067550666811, guid: 3466e1d616e841e49b3d959df1450844, type: 3}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
