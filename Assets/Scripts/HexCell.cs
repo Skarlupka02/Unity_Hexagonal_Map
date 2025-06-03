@@ -137,16 +137,68 @@ public class HexCell : MonoBehaviour
             hasIncomingRiver && incomingRiver == direction ||
             hasOutgoingRiver && outgoingRiver == direction;
     }
-
-    // Start is called before the first frame update
-    void Start()
+    public void RemoveOutgoingRiver()
     {
-        
+        if (!hasOutgoingRiver)
+        {
+            return;
+        }
+        hasOutgoingRiver = false;
+        Refresh();
+
+        HexCell neighbor = GetNeighbor(outgoingRiver);
+        neighbor.hasIncomingRiver = false;
+        neighbor.RefreshSelfOnly();
+
     }
-
-    // Update is called once per frame
-    void Update()
+    void RefreshSelfOnly()
     {
-        
+        chunk.Refresh();
+    }
+    public void RemoveIncomingRiver()
+    {
+        if (!hasIncomingRiver)
+        {
+            return;
+        }
+        hasIncomingRiver = false;
+        RefreshSelfOnly();
+
+        HexCell neighbor = GetNeighbor (incomingRiver);
+        neighbor.hasOutgoingRiver = false;
+        neighbor.RefreshSelfOnly();
+    }
+    public void RemoveRiver()
+    {
+        RemoveIncomingRiver();
+        RemoveOutgoingRiver();
+    }
+    public void SetOutgoingRiver(HexDirection direction)
+    {
+        if(hasOutgoingRiver && outgoingRiver == direction)
+        {
+            return;
+        }
+
+        HexCell neighbor = GetNeighbor(direction);
+        if (!neighbor || elevation < neighbor.elevation)
+        {
+            return;
+        }
+
+        RemoveOutgoingRiver();
+        if (hasIncomingRiver && incomingRiver == direction)
+        {
+            RemoveIncomingRiver();
+        }
+
+        hasOutgoingRiver = true;
+        outgoingRiver = direction;
+        RefreshSelfOnly ();
+
+        neighbor.RemoveIncomingRiver();
+        neighbor.hasIncomingRiver = true;
+        neighbor.incomingRiver = direction.Opposite();
+        neighbor.RefreshSelfOnly();
     }
 }
