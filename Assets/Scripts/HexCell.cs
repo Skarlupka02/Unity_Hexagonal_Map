@@ -57,6 +57,9 @@ public class HexCell : MonoBehaviour
             uiPosition.z = -position.y; ;
             uiRect.localPosition = uiPosition;
 
+            if (hasOutgoingRiver && elevation < GetNeighbor(outgoingRiver).elevation) { RemoveOutgoingRiver(); }
+            if (hasIncomingRiver && elevation > GetNeighbor(incomingRiver).elevation) { RemoveIncomingRiver(); }
+
             Refresh();
         }
     }
