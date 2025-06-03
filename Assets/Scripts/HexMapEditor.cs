@@ -9,11 +9,19 @@ public class HexMapEditor : MonoBehaviour
 {
     public Color[] colors;
     public HexGrid hexGrid;
+
     private Color activeColor;
+
     bool applyColor;
     bool applyElevation = true;
+    bool isDrag;
+
     int activeElevation;
     int brushSize;
+
+    HexDirection dragDirection;
+
+    HexCell previousCell;
 
     void Awake()
     {
@@ -21,16 +29,25 @@ public class HexMapEditor : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             HandleInput();
         }
+        else { previousCell = null; }
     }
     void HandleInput()
     {
         Ray inputRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(inputRay, out hit)) { EditCells(hexGrid.GetCell(hit.point)); }
+        if (Physics.Raycast(inputRay, out hit)) { 
+            HexCell currentCell = hexGrid.GetCell(hit.point);
+            if (previousCell && previousCell != currentCell) { ValidateDrag(currentCell); }
+            else isDrag = false;
+            EditCells(currentCell); 
+            previousCell = currentCell;
+            isDrag = true;
+        }
+        else previousCell = null;
     }
     void EditCells(HexCell center)
     {
@@ -101,5 +118,18 @@ public class HexMapEditor : MonoBehaviour
     public void SetRiverMode(int mode)
     {
         riverMode = (OptionalToggle)mode;
+    }
+
+    void ValidateDrag (HexCell currentCell)
+    {
+        for( dragDirection = HexDirection.NE; dragDirection <= HexDirection.NW; dragDirection++)
+        {
+            if(previousCell.GetNeighbor(dragDirection) == currentCell)
+            {
+                isDrag = true; return;
+            }
+        }
+        isDrag = false;
+
     }
 }
