@@ -159,7 +159,7 @@ MonoBehaviour:
   - {r: 0.6603774, g: 0.5605963, b: 0, a: 0}
   - {r: 0.09202562, g: 0.41509432, b: 0.096362084, a: 0}
   - {r: 0.009211446, g: 0.009211446, b: 0.6509434, a: 0}
-  - {r: 0.49474904, g: 0.9622642, b: 0.94668037, a: 0}
+  - {r: 1, g: 1, b: 1, a: 0}
   hexGrid: {fileID: 587670429}
 --- !u!114 &29110348
 MonoBehaviour:
@@ -1245,8 +1245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkPrefab: {fileID: 3214414500603338785, guid: bfe2a33909230fe4795618b5804e230d, type: 3}
   noiseSourse: {fileID: 2800000, guid: 208e2e9a9e4232f49a14bdf1c9465f9f, type: 3}
-  chunkCountX: 10
-  chunkCountZ: 10
+  chunkCountX: 1
+  chunkCountZ: 1
   cellPrefab: {fileID: 521237977120865656, guid: bbbfc3c366dab1b40a81ab82fb176993, type: 3}
   cellLabelPrefab: {fileID: 5038164067550666811, guid: 3466e1d616e841e49b3d959df1450844, type: 3}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2714,7 +2714,19 @@ MonoBehaviour:
   m_Group: {fileID: 1152118787}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 29110347}
+        m_TargetAssemblyTypeName: HexMapEditor, Assembly-CSharp
+        m_MethodName: SetRiverMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1060183976
 GameObject:
@@ -4508,7 +4520,19 @@ MonoBehaviour:
   m_Group: {fileID: 1152118787}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 29110347}
+        m_TargetAssemblyTypeName: HexMapEditor, Assembly-CSharp
+        m_MethodName: SetRiverMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1841271462
 GameObject:
@@ -4621,7 +4645,19 @@ MonoBehaviour:
   m_Group: {fileID: 1152118787}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 29110347}
+        m_TargetAssemblyTypeName: HexMapEditor, Assembly-CSharp
+        m_MethodName: SetRiverMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1858472755
 GameObject:

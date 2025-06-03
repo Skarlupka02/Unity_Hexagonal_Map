@@ -5,8 +5,8 @@ using UnityEngine;
 public class HexCell : MonoBehaviour
 {
     public HexCoordinates coordinates;
-    bool hasIncomingRiver, hasOutgoingRiver;
-    HexDirection incomingRiver, outgoingRiver;
+    public bool hasIncomingRiver, hasOutgoingRiver;
+    public HexDirection incomingRiver, outgoingRiver;
 
     public Color Color
     {
