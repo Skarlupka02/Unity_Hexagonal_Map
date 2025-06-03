@@ -90,9 +90,16 @@ public class HexMapEditor : MonoBehaviour
     {
         hexGrid.ShowUI(visible);
     }
-    // Start is called before the first frame update
-    void Start()
+
+    enum OptionalToggle
     {
-        
+        Ignore, Yes, No
+    }
+
+    OptionalToggle riverMode;
+
+    public void SetRiverMode(int mode)
+    {
+        riverMode = (OptionalToggle)mode;
     }
 }
