@@ -13,11 +13,13 @@ public class HexMetrics : MonoBehaviour
     public const float solidFactor = 0.8f;
     public const float blendFactor = 1f - solidFactor;
     public const float elevationStep = 3f;
-    public const int terracesPerSlope = 2;
-    public const int terracesSteps = terracesPerSlope * 2 + 1;
     public const float horizontalTerraceStepSize = 1f / terracesSteps;
     public const float verticalTerraceStepSize = 1f / (terracesPerSlope + 1);
+    public const float streamBedElevantionOffset = -1f;
+
     public const int chunkSizeX = 5, chunkSizeZ = 5;
+    public const int terracesPerSlope = 2;
+    public const int terracesSteps = terracesPerSlope * 2 + 1;
 
     static Vector3[] corners =
     {

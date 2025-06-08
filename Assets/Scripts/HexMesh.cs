@@ -51,35 +51,33 @@ public class HexMesh : MonoBehaviour
 
         if (lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
 
-        DisplayEdges();
+        //DisplayEdges1();
+        //DisplayEdges2();
     }
 
-    void DisplayEdges()
+    void DisplayEdges2()
+    {
+        Mesh mesh = meshFilter.sharedMesh;
+        mesh.SetIndices(mesh.GetIndices(0), MeshTopology.Lines, 0);
+    }
+    void DisplayEdges1()
     {
         Mesh mesh = meshFilter.sharedMesh;
 
-        lineRenderer.startWidth = 0.05f;
-        lineRenderer.endWidth = 0.05f;
+        lineRenderer.startWidth = 0.03f;
+        lineRenderer.endWidth = 0.03f;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.endColor = Color.black;
         lineRenderer.startColor = Color.black;
 
         List<Vector3> edgePoints = new List<Vector3>();
 
-        for (int i = 0; i < triangles.Count; i += 3)
+        for (int i = 0; i < triangles.Count; i += 1)
         {
-            edgePoints.Add(vertices[triangles[i]]);
-            edgePoints.Add(vertices[triangles[i + 1]]);
-
-            edgePoints.Add(vertices[triangles[i + 1]]);
-            edgePoints.Add(vertices[triangles[i + 2]]);
-
-            edgePoints.Add(vertices[triangles[i + 2]]);
-            edgePoints.Add(vertices[triangles[i]]);
-
-            lineRenderer.positionCount = edgePoints.Count;
-            lineRenderer.SetPositions(edgePoints.ToArray());
+            edgePoints.Add(vertices[triangles[i]]); 
         }
+        lineRenderer.positionCount = edgePoints.Count;
+        lineRenderer.SetPositions(edgePoints.ToArray());
     }
 
     void Triangulate(HexCell cell)
@@ -125,7 +123,7 @@ public class HexMesh : MonoBehaviour
         if (neighbor == null) { return; }
         Vector3 bridge = HexMetrics.GetBridge(direction);
         bridge.y = neighbor.Position.y - cell.Position.y;
-        EdgeVertices e2 = new EdgeVertices(e1.v1 + bridge, e1.v4 + bridge);
+        EdgeVertices e2 = new EdgeVertices(e1.v1 + bridge, e1.v5 + bridge);
 
 
         //if (cell.GetEdgeType(direction) == HexEdgeType.Slope)
@@ -144,26 +142,26 @@ public class HexMesh : MonoBehaviour
         HexCell nextNeighbor = cell.GetNeighbor(direction.Next());
         if (direction <= HexDirection.E && nextNeighbor != null)
         {
-            Vector3 v5 = e1.v4 + HexMetrics.GetBridge(direction.Next());
-            v5.y = nextNeighbor.Position.y;
+            Vector3 v6 = e1.v5 + HexMetrics.GetBridge(direction.Next());
+            v6.y = nextNeighbor.Position.y;
             if(cell.Elevation <= neighbor.Elevation)
             {
                 if(cell.Elevation <= nextNeighbor.Elevation)
                 {
-                    TriangulateCorner(e1.v4, cell, e2.v4, neighbor, v5, nextNeighbor);
+                    TriangulateCorner(e1.v5, cell, e2.v5, neighbor, v6, nextNeighbor);
                 }
                 else
                 {
-                    TriangulateCorner(v5, nextNeighbor, e1.v4, cell, e2.v4, neighbor);
+                    TriangulateCorner(v6, nextNeighbor, e1.v5, cell, e2.v5, neighbor);
                 }
             }
             else if(neighbor.Elevation <= nextNeighbor.Elevation)
             {
-                TriangulateCorner(e2.v4, neighbor, v5, nextNeighbor, e1.v4, cell);
+                TriangulateCorner(e2.v5, neighbor, v6, nextNeighbor, e1.v5, cell);
             }
             else
             {
-                TriangulateCorner(v5, nextNeighbor, e1.v4, cell, e2.v4, neighbor);
+                TriangulateCorner(v6, nextNeighbor, e1.v5, cell, e2.v5, neighbor);
             }
         }
     }
