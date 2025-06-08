@@ -1245,8 +1245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chunkPrefab: {fileID: 3214414500603338785, guid: bfe2a33909230fe4795618b5804e230d, type: 3}
   noiseSourse: {fileID: 2800000, guid: 208e2e9a9e4232f49a14bdf1c9465f9f, type: 3}
-  chunkCountX: 1
-  chunkCountZ: 1
+  chunkCountX: 2
+  chunkCountZ: 2
   cellPrefab: {fileID: 521237977120865656, guid: bbbfc3c366dab1b40a81ab82fb176993, type: 3}
   cellLabelPrefab: {fileID: 5038164067550666811, guid: 3466e1d616e841e49b3d959df1450844, type: 3}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
@@ -2081,7 +2081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb84af53e41671f418c0a1da3d7c8758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onWireframe: 0
 --- !u!1 &963369679
 GameObject:
   m_ObjectHideFlags: 0

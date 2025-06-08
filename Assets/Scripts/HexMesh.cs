@@ -7,6 +7,8 @@ public class HexMesh : MonoBehaviour
 {
     Mesh hexMesh;
     MeshCollider meshCollider;
+    MeshFilter meshFilter;
+    LineRenderer lineRenderer;
 
     static List<Vector3> vertices = new List<Vector3>();
     static List<int> triangles = new List<int>();
@@ -21,7 +23,6 @@ public class HexMesh : MonoBehaviour
         //triangles = new List<int>();
         //colors = new List<Color>();
     }
-
     public void Triangulate(HexCell[] cells)
     {
         hexMesh.Clear();
@@ -38,6 +39,47 @@ public class HexMesh : MonoBehaviour
         hexMesh.RecalculateNormals();
         meshCollider.sharedMesh = hexMesh;
         hexMesh.colors = colors.ToArray();
+
+        MeshTriangulateView();
+    }
+
+    public void MeshTriangulateView()
+    {
+        if (meshFilter == null) meshFilter = GetComponent<MeshFilter>();
+
+        if (GetComponent<LineRenderer>() == null) lineRenderer = gameObject.AddComponent<LineRenderer>();
+
+        if (lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
+
+        DisplayEdges();
+    }
+
+    void DisplayEdges()
+    {
+        Mesh mesh = meshFilter.sharedMesh;
+
+        lineRenderer.startWidth = 0.05f;
+        lineRenderer.endWidth = 0.05f;
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        lineRenderer.endColor = Color.black;
+        lineRenderer.startColor = Color.black;
+
+        List<Vector3> edgePoints = new List<Vector3>();
+
+        for (int i = 0; i < triangles.Count; i += 3)
+        {
+            edgePoints.Add(vertices[triangles[i]]);
+            edgePoints.Add(vertices[triangles[i + 1]]);
+
+            edgePoints.Add(vertices[triangles[i + 1]]);
+            edgePoints.Add(vertices[triangles[i + 2]]);
+
+            edgePoints.Add(vertices[triangles[i + 2]]);
+            edgePoints.Add(vertices[triangles[i]]);
+
+            lineRenderer.positionCount = edgePoints.Count;
+            lineRenderer.SetPositions(edgePoints.ToArray());
+        }
     }
 
     void Triangulate(HexCell cell)
@@ -371,6 +413,8 @@ public class HexMesh : MonoBehaviour
         AddTriangleColor(color);
         AddTriangle(center, edge.v3, edge.v4);
         AddTriangleColor(color);
+        AddTriangle(center, edge.v4, edge.v5);
+        AddTriangleColor(color);
     }
     void TriangulateEdgeStrip(EdgeVertices e1, Color c1, EdgeVertices e2, Color c2) 
     { 
@@ -379,6 +423,8 @@ public class HexMesh : MonoBehaviour
         AddQuad(e1.v2, e1.v3, e2.v2, e2.v3);
         AddQuadColor(c1, c2);
         AddQuad(e1.v3, e1.v4, e2.v3, e2.v4);
+        AddQuadColor(c1, c2);
+        AddQuad(e1.v4, e1.v5, e2.v4, e2.v5);
         AddQuadColor(c1, c2);
     }
 

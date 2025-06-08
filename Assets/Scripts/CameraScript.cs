@@ -4,16 +4,6 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    [SerializeField]
-    public bool onWireframe;
-    private void OnPreRender()
-    {
-        if (onWireframe) GL.wireframe = true;
-    }
-    private void OnPostRender()
-    {
-        if (onWireframe) GL.wireframe = false;
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +18,6 @@ public class CameraScript : MonoBehaviour
         {
             ScreenCapture.CaptureScreenshot(Application.persistentDataPath + "/Screenshot"+Time.time.ToString()+".png");
             Debug.Log("A screenshot was set in " + Application.persistentDataPath + "/Screenshot" + Time.time.ToString() + ".png");
-        }    
+        }
     }
 }
