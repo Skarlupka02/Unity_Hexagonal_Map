@@ -111,12 +111,19 @@ public class HexMesh : MonoBehaviour
         //{
         //    TriangulateConnection(direction, cell, e);
         //}
-        if (cell.HasRiverThroughEdge(direction))
-        {
-            e.v3.y = cell.StreamBedY;
-        }
 
-        TriangulateEdgeFan(center, e, cell.Color);
+        if (cell.HasRiver)
+        {
+            if (cell.HasRiverThroughEdge(direction))
+            {
+                e.v3.y = cell.StreamBedY;
+                TriangulateWithRiver(direction, cell, center, e);
+            }
+        }
+        else
+        {
+            TriangulateEdgeFan(center, e, cell.Color);
+        }
 
         if (direction <= HexDirection.SE)
         {
@@ -445,5 +452,10 @@ public class HexMesh : MonoBehaviour
         triangles.Add(vertexIndex);
         triangles.Add(vertexIndex + 1);
         triangles.Add(vertexIndex + 2);
+    }
+
+    void TriangulateWithRiver(HexDirection direction, HexCell cell, Vector3 center, EdgeVertices e)
+    {
+
     }
 }
