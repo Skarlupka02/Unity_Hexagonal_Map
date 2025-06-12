@@ -51,7 +51,7 @@ public class HexMesh : MonoBehaviour
 
         if (lineRenderer == null) lineRenderer = GetComponent<LineRenderer>();
 
-        //DisplayEdges1();
+        DisplayEdges1();
         //DisplayEdges2();
     }
 
@@ -92,7 +92,7 @@ public class HexMesh : MonoBehaviour
     {
         Vector3 center = cell.Position;
         EdgeVertices e = new EdgeVertices(center + HexMetrics.GetFirstSolidCorner(direction), center + HexMetrics.GetSecondSolidCorner(direction));
-        TriangulateEdgeFan(center, e, cell.Color);
+        
         //Vector3 center = cell.transform.localPosition;
         //Vector3 v1 = center + HexMetrics.GetFirstSolidCorner(direction);
         //Vector3 v2 = center + HexMetrics.GetSecondSolidCorner(direction);
@@ -107,11 +107,18 @@ public class HexMesh : MonoBehaviour
         //AddTriangle(center, e2, v2);
         //AddTriangleColor(cell.color);
 
-        if (direction == HexDirection.NE)
+        //if (direction == HexDirection.NE)
+        //{
+        //    TriangulateConnection(direction, cell, e);
+        //}
+        if (cell.HasRiverThroughEdge(direction))
         {
-            TriangulateConnection(direction, cell, e);
+            e.v3.y = cell.StreamBedY;
         }
-        if(direction <= HexDirection.SE)
+
+        TriangulateEdgeFan(center, e, cell.Color);
+
+        if (direction <= HexDirection.SE)
         {
             TriangulateConnection(direction, cell, e);
         }
@@ -125,7 +132,10 @@ public class HexMesh : MonoBehaviour
         bridge.y = neighbor.Position.y - cell.Position.y;
         EdgeVertices e2 = new EdgeVertices(e1.v1 + bridge, e1.v5 + bridge);
 
-
+        if (cell.HasRiverThroughEdge(direction))
+        {
+            e2.v3.y = neighbor.StreamBedY;
+        }
         //if (cell.GetEdgeType(direction) == HexEdgeType.Slope)
         //{
         //    TriangulateEdgeTerraces(e1.v1, e1.v4, cell, e2.v1, e2.v4, neighbor);

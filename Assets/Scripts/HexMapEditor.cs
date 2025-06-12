@@ -130,7 +130,6 @@ public class HexMapEditor : MonoBehaviour
     public void SetRiverMode(int mode)
     {
         riverMode = (OptionalToggle)mode;
-        Debug.Log(mode);
     }
 
     void ValidateDrag (HexCell currentCell)
