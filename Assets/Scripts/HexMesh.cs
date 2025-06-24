@@ -470,8 +470,28 @@ public class HexMesh : MonoBehaviour
 
     void TriangulateWithRiver(HexDirection direction, HexCell cell, Vector3 center, EdgeVertices e)
     {
-        Vector3 centerL = center + HexMetrics.GetFirstSolidCorner(direction.Previous()) * 0.25f;
-        Vector3 centerR = center + HexMetrics.GetFirstSolidCorner(direction.Next()) * 0.25f;
+        Vector3 centerL, centerR;
+
+        if (cell.HasRiverThroughEdge(direction.Opposite())){
+            centerL = center + HexMetrics.GetFirstSolidCorner(direction.Previous()) * 0.25f;
+            centerR = center + HexMetrics.GetSecondSolidCorner(direction.Next()) * 0.25f;
+        }
+        else if (cell.HasRiverThroughEdge(direction.Next()))
+        {
+            centerL = center;
+            centerR = Vector3.Lerp(center, e.v5, 2f / 3f);
+        }
+        else if (cell.HasRiverThroughEdge(direction.Previous()))
+        {
+            centerL = Vector3.Lerp(center, e.v1, 2f / 3f);
+            centerR = center;
+        }
+        else
+        {
+            centerL = centerR = center;
+        }
+
+        center = Vector3.Lerp(centerL, centerR, 0.5f);
 
         EdgeVertices m = new EdgeVertices(
             Vector3.Lerp(centerL, e.v1, 0.5f),
@@ -491,6 +511,7 @@ public class HexMesh : MonoBehaviour
         AddQuadColor(cell.Color);
         AddTriangle(centerR, m.v4, m.v5);
         AddTriangleColor(cell.Color);
+
     }
 
     void TriangulateWithRiverBeginOrEnd(HexDirection direction, HexCell cell, Vector3 center, EdgeVertices e)
