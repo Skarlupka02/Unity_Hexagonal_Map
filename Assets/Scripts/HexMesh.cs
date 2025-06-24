@@ -486,9 +486,15 @@ public class HexMesh : MonoBehaviour
             centerL = Vector3.Lerp(center, e.v1, 2f / 3f);
             centerR = center;
         }
+        else if (cell.HasRiverThroughEdge(direction.Next2()))
+        {
+            centerL = center;
+            centerR = center + HexMetrics.GetSolidEdgeMiddle(direction.Next()) * (0.5f * HexMetrics.innerToOuter);
+        }
         else
         {
-            centerL = centerR = center;
+            centerL = center + HexMetrics.GetSolidEdgeMiddle(direction.Previous()) * (0.5f * HexMetrics.innerToOuter);
+            centerR = center;
         }
 
         center = Vector3.Lerp(centerL, centerR, 0.5f);
