@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d4e0b8149ed01a4ab568f59bda3e467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chunkPrefab: {fileID: 3214414500603338785, guid: bfe2a33909230fe4795618b5804e230d, type: 3}
+  chunkPrefab: {fileID: 4500667466908422771, guid: dbb2c6e6060d3724d8361e52b56019d6, type: 3}
   noiseSourse: {fileID: 2800000, guid: 208e2e9a9e4232f49a14bdf1c9465f9f, type: 3}
   chunkCountX: 2
   chunkCountZ: 2
@@ -3723,7 +3723,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 2
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
