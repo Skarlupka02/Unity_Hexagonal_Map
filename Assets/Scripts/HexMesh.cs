@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,9 @@ public class HexMesh : MonoBehaviour
     Mesh hexMesh;
     MeshCollider meshCollider;
 
-    static List<Vector3> vertices = new List<Vector3>();
-    static List<int> triangles = new List<int>();
-    static List<Color> colors = new List<Color>();
+    [NonSerialized] List<Vector3> vertices = new List<Vector3>();
+    [NonSerialized] List<int> triangles = new List<int>();
+    [NonSerialized] List<Color> colors = new List<Color>();
 
     private void Awake()
     {
@@ -97,18 +98,21 @@ public class HexMesh : MonoBehaviour
     public void Clear()
     {
         hexMesh.Clear();
-        vertices.Clear();
-        triangles.Clear();
-        colors.Clear();
+        vertices = ListPool<Vector3>.Get();
+        triangles = ListPool<int>.Get();
+        colors = ListPool<Color>.Get();
     }
 
     public void Apply()
     {
-        hexMesh.vertices = vertices.ToArray();
-        hexMesh.triangles = triangles.ToArray();
+        hexMesh.SetVertices(vertices);
+        ListPool<Vector3>.Add(vertices);
+        hexMesh.SetTriangles(triangles, 0);
+        ListPool<int>.Add(triangles);
+        hexMesh.SetColors(colors);
+        ListPool<Color>.Add(colors);
         hexMesh.RecalculateNormals();
         meshCollider.sharedMesh = hexMesh;
-        hexMesh.colors = colors.ToArray();
     }
 
     public void DisplayEdges1(MeshFilter meshFilter, LineRenderer lineRenderer)
@@ -130,4 +134,5 @@ public class HexMesh : MonoBehaviour
         lineRenderer.positionCount = edgePoints.Count;
         lineRenderer.SetPositions(edgePoints.ToArray());
     }
+
 }

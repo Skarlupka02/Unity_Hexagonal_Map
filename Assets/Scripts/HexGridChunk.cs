@@ -55,9 +55,11 @@ public class HexGridChunk : MonoBehaviour
             Triangulate(cells[i]);
         }
 
+        MeshTriangulateView();
+
         terrain.Apply();
 
-        MeshTriangulateView();
+        
     }
 
     void Triangulate(HexCell cell)
