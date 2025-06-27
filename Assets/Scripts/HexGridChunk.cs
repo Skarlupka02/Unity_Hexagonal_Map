@@ -5,7 +5,7 @@ using UnityEngine;
 public class HexGridChunk : MonoBehaviour
 {
     [SerializeField]
-    HexMesh terrain;
+    HexMesh terrain, rivers;
 
 
     HexCell[] cells;
@@ -49,6 +49,7 @@ public class HexGridChunk : MonoBehaviour
     public void Triangulate()
     {
         terrain.Clear();
+        rivers.Clear();
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -58,6 +59,7 @@ public class HexGridChunk : MonoBehaviour
         MeshTriangulateView();
 
         terrain.Apply();
+        rivers.Apply();
 
         
     }

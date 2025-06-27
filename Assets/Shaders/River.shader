@@ -1,4 +1,4 @@
-Shader "Custom/VertexColors"
+Shader "Custom/River"
 {
     Properties
     {
@@ -40,13 +40,12 @@ Shader "Custom/VertexColors"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            // Albedo comes from a texture tinted by color
             fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
             o.Albedo = c.rgb * IN.color;
-            // Metallic and smoothness come from slider variables
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
+            o.Albedo.rg = IN.uv_MainTex;
         }
         ENDCG
     }
