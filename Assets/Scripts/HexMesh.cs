@@ -20,7 +20,6 @@ public class HexMesh : MonoBehaviour
     {
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
         if (useCollider) { meshCollider = gameObject.AddComponent<MeshCollider>(); }
-        Debug.Log(useCollider +" | " + useColors);
         hexMesh.name = "Hex Mesh";
     }
 
