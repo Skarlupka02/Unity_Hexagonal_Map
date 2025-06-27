@@ -6,6 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class HexMesh : MonoBehaviour
 {
+    public bool useCollider;
+
     Mesh hexMesh;
     MeshCollider meshCollider;
 
@@ -16,7 +18,7 @@ public class HexMesh : MonoBehaviour
     private void Awake()
     {
         GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
-        meshCollider = gameObject.AddComponent<MeshCollider>();
+        if (useCollider) { meshCollider = gameObject.AddComponent<MeshCollider>(); }
         hexMesh.name = "Hex Mesh";
     }
 
@@ -112,7 +114,7 @@ public class HexMesh : MonoBehaviour
         hexMesh.SetColors(colors);
         ListPool<Color>.Add(colors);
         hexMesh.RecalculateNormals();
-        meshCollider.sharedMesh = hexMesh;
+        if (useCollider) { meshCollider.sharedMesh = hexMesh; }
     }
 
     public void DisplayEdges1(MeshFilter meshFilter, LineRenderer lineRenderer)
