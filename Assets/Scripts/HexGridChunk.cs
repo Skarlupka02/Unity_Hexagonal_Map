@@ -428,7 +428,7 @@ public class HexGridChunk : MonoBehaviour
     {
         EdgeVertices m = new EdgeVertices(
             Vector3.Lerp(center, e.v1, 0.5f),
-            Vector3.Lerp(center, e.v5, 9.5f)
+            Vector3.Lerp(center, e.v5, 0.5f)
         );
 
         m.v3.y = e.v3.y;
