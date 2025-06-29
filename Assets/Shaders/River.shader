@@ -40,17 +40,16 @@ Shader "Custom/River"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            o.Albedo = c.rgb * IN.color;
+            float2 uv = IN.uv_MainTex;
+            uv.x *= 0.0625;
+            uv.y -= _Time.y * 0.25;
+            float4 noise = tex2D(_MainTex, uv);
+
+            fixed4 c = _Color * noise.r;
+            o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = c.a;
-            if(IN.uv_MainTex.y < 0){
-                    IN.uv_MainTex.y +=1;
-                }
-            IN.uv_MainTex.y -= _Time.y;
-            IN.uv_MainTex.y = frac(IN.uv_MainTex.y);
-            o.Albedo.rg = IN.uv_MainTex;
         }
         ENDCG
     }
