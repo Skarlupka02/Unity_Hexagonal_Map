@@ -110,7 +110,7 @@ public class HexCell : MonoBehaviour
     {
         get
         {
-            return outgoingRiver;
+            return incomingRiver;
         }
     }
     public HexDirection OutgoingRiver
@@ -147,7 +147,7 @@ public class HexCell : MonoBehaviour
             return;
         }
         hasOutgoingRiver = false;
-        Refresh();
+        RefreshSelfOnly();
 
         HexCell neighbor = GetNeighbor(outgoingRiver);
         neighbor.hasIncomingRiver = false;
