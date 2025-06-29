@@ -9,12 +9,12 @@ Shader "Custom/River"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent"}
         LOD 200
 
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard fullforwardshadows
+        #pragma surface surf Standard alpha // fullforwardshadows
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -50,7 +50,7 @@ Shader "Custom/River"
             uv2.y -+ _Time.y * 0.23;
             float4 noise2 = tex2D(_MainTex, uv2);
 
-            fixed4 c = _Color * (noise.r * noise2.a);
+            fixed4 c = saturate(_Color + (noise.r * noise2.a));
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
