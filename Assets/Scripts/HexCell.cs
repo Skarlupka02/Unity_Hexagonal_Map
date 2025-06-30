@@ -230,11 +230,19 @@ public class HexCell : MonoBehaviour
 
     #region Roads methods
 
+    /// <summary>
+    /// ѕровер€ем имеет ли €чейка дорогу в определЄнном направлении
+    /// </summary>
+    /// <param name="direction">Ќаправление</param>
+    /// <returns></returns>
     public bool HasRoadThroughEdge(HexDirection direction)
     {
         return roads[(int)direction];
     }
 
+    /// <summary>
+    /// ѕровер€ем есть ли хоть одна дорога в €чейке
+    /// </summary>
     public bool HasRoads
     {
         get
@@ -247,6 +255,24 @@ public class HexCell : MonoBehaviour
                 }
             }
             return false;
+        }
+    }
+
+    /// <summary>
+    /// ”даление всех дорог из €чейки
+    /// </summary>
+    public void RemoveRoads()
+    {
+        for(int i = 0;i < neighbors.Length;i++)
+        {
+            if (roads[i])
+            {
+                roads[i] = false;
+                neighbors[i].roads[(int)((HexDirection)i).Opposite()] = false; //ќтключаем дороги в соседних €чейках
+                //ќбновл€ем каждую из €чеек бех их соседей
+                neighbors[i].RefreshSelfOnly();
+                RefreshSelfOnly();
+            }
         }
     }
 
