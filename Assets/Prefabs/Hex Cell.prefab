@@ -51,6 +51,7 @@ MonoBehaviour:
   hasOutgoingRiver: 0
   incomingRiver: 0
   outgoingRiver: 0
+  roads: 000000000000
   uiRect: {fileID: 0}
   chunk: {fileID: 0}
   neighbors:

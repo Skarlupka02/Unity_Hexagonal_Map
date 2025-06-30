@@ -8,6 +8,9 @@ public class HexCell : MonoBehaviour
     public bool hasIncomingRiver, hasOutgoingRiver;
     public HexDirection incomingRiver, outgoingRiver;
 
+    [SerializeField]
+    bool[] roads;
+
     public Color Color
     {
         get { return color; } 
@@ -17,6 +20,7 @@ public class HexCell : MonoBehaviour
             Refresh();
         }
     }
+
     Color color;
     int elevation = int.MinValue;
     public RectTransform uiRect;
@@ -92,6 +96,12 @@ public class HexCell : MonoBehaviour
         }
     }
 
+    void RefreshSelfOnly()
+    {
+        chunk.Refresh();
+    }
+
+    #region River methods
     public bool HasIncomingRiver
     {
         get
@@ -153,10 +163,6 @@ public class HexCell : MonoBehaviour
         neighbor.hasIncomingRiver = false;
         neighbor.RefreshSelfOnly();
 
-    }
-    void RefreshSelfOnly()
-    {
-        chunk.Refresh();
     }
     public void RemoveIncomingRiver()
     {
@@ -220,4 +226,29 @@ public class HexCell : MonoBehaviour
             return (elevation + HexMetrics.riverSurfaceElevationOffset) * HexMetrics.elevationStep;
         }
     }
+    #endregion
+
+    #region Roads methods
+
+    public bool HasRoadThroughEdge(HexDirection direction)
+    {
+        return roads[(int)direction];
+    }
+
+    public bool HasRoads
+    {
+        get
+        {
+            for (int i = 0; i < roads.Length; i++)
+            {
+                if (roads[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    #endregion
 }
