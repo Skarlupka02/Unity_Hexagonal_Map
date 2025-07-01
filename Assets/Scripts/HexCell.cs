@@ -101,6 +101,17 @@ public class HexCell : MonoBehaviour
         chunk.Refresh();
     }
 
+    /// <summary>
+    /// Возвращает разницу высот в определённом направлении
+    /// </summary>
+    /// <param name="direction">Направление</param>
+    /// <returns></returns>
+    public int GetElevationDifference(HexDirection direction)
+    {
+        int difference = elevation - GetNeighbor(direction).elevation;
+        return difference >= 0 ? difference : -difference;
+    }
+
     #region River methods
     public bool HasIncomingRiver
     {
@@ -267,12 +278,36 @@ public class HexCell : MonoBehaviour
         {
             if (roads[i])
             {
-                roads[i] = false;
-                neighbors[i].roads[(int)((HexDirection)i).Opposite()] = false; //Отключаем дороги в соседних ячейках
-                //Обновляем каждую из ячеек бех их соседей
-                neighbors[i].RefreshSelfOnly();
-                RefreshSelfOnly();
+                SetRoad(i, false);
+                
             }
+        }
+    }
+
+    /// <summary>
+    /// Частный метод удаления и добавления дороги
+    /// </summary>
+    /// <param name="index">Ячейка по направлению</param>
+    /// <param name="state">Удаление или добавление</param>
+    void SetRoad(int index, bool state)
+    {
+        roads[index] = state;
+        neighbors[index].roads[(int)((HexDirection)index).Opposite()] = state; //Отключаем дороги в соседних ячейках
+        //Обновляем каждую из ячеек бех их соседей
+        neighbors[index].RefreshSelfOnly();
+        RefreshSelfOnly();
+    }
+
+    /// <summary>
+    /// Добавление дороги
+    /// </summary>
+    /// <param name="direction">Направление</param>
+    public void AddRoad(HexDirection direction)
+    {
+        //Проверяем есть ли место для дороги и дорога не идёт на большую высоту
+        if (!roads[(int)direction] && !HasRiverThroughEdge(direction) && GetElevationDifference(direction) <= 1)
+        {
+            SetRoad((int)direction, true);
         }
     }
 
