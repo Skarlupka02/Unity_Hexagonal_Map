@@ -103,7 +103,7 @@ public class HexMapEditor : MonoBehaviour
                     {
                         otherCell.SetOutgoingRiver(dragDirection);
                     }
-                    if(roadMode != OptionalToggle.Yes)
+                    if(roadMode == OptionalToggle.Yes)
                     {
                         otherCell.AddRoad(dragDirection);
                     }
