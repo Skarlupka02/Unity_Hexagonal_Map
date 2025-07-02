@@ -64,6 +64,15 @@ public class HexCell : MonoBehaviour
             if (hasOutgoingRiver && elevation < GetNeighbor(outgoingRiver).elevation) { RemoveOutgoingRiver(); }
             if (hasIncomingRiver && elevation > GetNeighbor(incomingRiver).elevation) { RemoveIncomingRiver(); }
 
+            //Удаляем дорогу если высота стала больше 1
+            for (int i = 0; i < roads.Length; i++)
+            {
+                if (roads[i] && GetElevationDifference((HexDirection)i) > 1)
+                {
+                    SetRoad(i, false);
+                }
+            }
+
             Refresh();
         }
     }
@@ -214,12 +223,15 @@ public class HexCell : MonoBehaviour
 
         hasOutgoingRiver = true;
         outgoingRiver = direction;
-        RefreshSelfOnly ();
+        //RefreshSelfOnly ();
 
         neighbor.RemoveIncomingRiver();
         neighbor.hasIncomingRiver = true;
         neighbor.incomingRiver = direction.Opposite();
-        neighbor.RefreshSelfOnly();
+        //neighbor.RefreshSelfOnly();
+
+        //Удаление дороги на пути реки
+        SetRoad((int)direction, false);
     }
 
     public float StreamBedY
