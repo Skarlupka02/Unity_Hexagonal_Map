@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms.GameCenter;
 public class HexGridChunk : MonoBehaviour
 {
     [SerializeField]
-    HexMesh terrain, rivers;
+    HexMesh terrain, rivers, roads;
 
 
     HexCell[] cells;
@@ -51,6 +51,7 @@ public class HexGridChunk : MonoBehaviour
     {
         terrain.Clear();
         rivers.Clear();
+        roads.Clear();
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -61,7 +62,7 @@ public class HexGridChunk : MonoBehaviour
 
         terrain.Apply();
         rivers.Apply();
-
+        roads.Apply();
         
     }
 
