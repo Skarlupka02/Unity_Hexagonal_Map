@@ -249,6 +249,15 @@ public class HexCell : MonoBehaviour
             return (elevation + HexMetrics.riverSurfaceElevationOffset) * HexMetrics.elevationStep;
         }
     }
+
+    public HexDirection RiverBeginOrEndDirection
+    {
+        get
+        {
+            return hasIncomingRiver ? incomingRiver : outgoingRiver;
+        }
+    }
+
     #endregion
 
     #region Roads methods
