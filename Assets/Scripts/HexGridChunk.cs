@@ -616,6 +616,13 @@ public class HexGridChunk : MonoBehaviour
         {
             roadCenter -= HexMetrics.GetFirstCorner(cell.IncomingRiver) * 0.2f;
         }
+        else if(previousHasRiver && nextHasRiver)
+        {
+            if(!hasRoadTroughEdge) { return; }
+            Vector3 offset = HexMetrics.GetSolidEdgeMiddle(direction) * HexMetrics.innerToOuter;
+            roadCenter += offset * 0.7f;
+            center += offset * 0.5f;
+        }
 
         Vector3 mL = Vector3.Lerp(roadCenter, e.v1, interpolators.x);
         Vector3 mR = Vector3.Lerp(roadCenter, e.v5, interpolators.y);
