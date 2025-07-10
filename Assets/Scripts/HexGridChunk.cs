@@ -109,6 +109,11 @@ public class HexGridChunk : MonoBehaviour
             TriangulateConnection(direction, cell, e);
         }
 
+        if (cell.IsUnderwater)
+        {
+            TriagulateWater(direction, cell, center);
+        }
+
     }
 
     void TriangulateConnection(HexDirection direction, HexCell cell, EdgeVertices e1)
@@ -627,9 +632,9 @@ public class HexGridChunk : MonoBehaviour
         {
             HexDirection middle;
             if (previousHasRiver) { middle = direction.Next(); }
-            else if(nextHasRiver) { middle = direction.Previous(); }
+            else if (nextHasRiver) { middle = direction.Previous(); }
             else { middle = direction; }
-            if(!cell.HasRoadThroughEdge(middle) && !cell.HasRoadThroughEdge(middle.Previous()) && !cell.HasRoadThroughEdge(middle.Next())) { return; }
+            if (!cell.HasRoadThroughEdge(middle) && !cell.HasRoadThroughEdge(middle.Previous()) && !cell.HasRoadThroughEdge(middle.Next())) { return; }
             roadCenter += HexMetrics.GetSolidEdgeMiddle(middle) * 0.25f;
 
 
@@ -638,14 +643,27 @@ public class HexGridChunk : MonoBehaviour
         Vector3 mR = Vector3.Lerp(roadCenter, e.v5, interpolators.y);
         TriangulateRoad(roadCenter, mL, mR, e, hasRoadTroughEdge);
 
-        if(previousHasRiver) 
+        if (previousHasRiver)
         {
             TriangulateRoadEdge(roadCenter, center, mL);
         }
-        if(nextHasRiver)
+        if (nextHasRiver)
         {
             TriangulateRoadEdge(roadCenter, mR, center);
         }
+    }
+
+    #endregion
+
+    #region Water methods
+
+    void TriagulateWater(HexDirection direction, HexCell cell, Vector3 center)
+    {
+        center.y = cell.WaterSurfaceY;
+        Vector3 c1 = center + HexMetrics.GetFirstSolidCorner(direction);
+        Vector3 c2 = center + HexMetrics.GetSecondSolidCorner(direction);
+
+        water.AddTriangle(center, c1, c2);
     }
 
     #endregion
