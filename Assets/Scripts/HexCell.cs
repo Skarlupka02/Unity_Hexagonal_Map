@@ -7,9 +7,19 @@ public class HexCell : MonoBehaviour
     public HexCoordinates coordinates;
     public bool hasIncomingRiver, hasOutgoingRiver;
     public HexDirection incomingRiver, outgoingRiver;
+    public RectTransform uiRect;
+    public HexGridChunk chunk;
+
+    Color color;
+
+    int elevation = int.MinValue;
+    int waterLevel;
+
 
     [SerializeField]
     bool[] roads;
+    [SerializeField]
+    HexCell[] neighbors;
 
     public Color Color
     {
@@ -20,16 +30,6 @@ public class HexCell : MonoBehaviour
             Refresh();
         }
     }
-
-    Color color;
-    int elevation = int.MinValue;
-    public RectTransform uiRect;
-
-    public HexGridChunk chunk;
-
-    [SerializeField]
-    HexCell[] neighbors;
-
 
     public HexCell GetNeighbor (HexDirection direction)
     {
@@ -76,7 +76,6 @@ public class HexCell : MonoBehaviour
             Refresh();
         }
     }
-    
     public HexEdgeType GetEdgeType(HexDirection direction)
     {
         return HexMetrics.GetEdgeType(elevation, neighbors[(int)direction].elevation);
@@ -89,6 +88,7 @@ public class HexCell : MonoBehaviour
     {
         get { return transform.localPosition; }
     }
+    
     void Refresh()
     {
         if (chunk)
@@ -104,7 +104,6 @@ public class HexCell : MonoBehaviour
             }
         }
     }
-
     void RefreshSelfOnly()
     {
         chunk.Refresh();
@@ -333,4 +332,26 @@ public class HexCell : MonoBehaviour
     }
 
     #endregion
+
+    #region Water methods
+
+    public int WaterLevel
+    {
+        get
+        {
+            return waterLevel;
+        }
+        set
+        {
+            if(waterLevel == value)
+            {
+                return;
+            }
+            waterLevel = value;
+            Refresh();
+        }
+    }
+
+    #endregion
+
 }
