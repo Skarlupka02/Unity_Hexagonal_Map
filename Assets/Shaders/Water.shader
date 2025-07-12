@@ -40,6 +40,8 @@ Shader "Custom/Water"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
+            
+
             float2 uv1 = IN.worldPos.xz;
             uv1.y += _Time.y;
             float4 noise1 = tex2D(_MainTex, uv1 * 0.025);
@@ -48,7 +50,10 @@ Shader "Custom/Water"
             uv2.x += _Time.y;
             float4 noise2 = tex2D(_MainTex, uv2 * 0.025);
 
-            float waves = noise1.z + noise2.x;
+            float blendWave = sin((IN.worldPos.x + IN.worldPos.z) * 0.1 + (noise1.y + noise2.z) + _Time.y);
+            blendWave *= blendWave;
+
+            float waves = lerp(noise1.z, noise1.w, blendWave) + lerp(noise2.x, noise2.y, blendWave);
             waves = smoothstep(0.75, 2, waves);
 
             fixed4 c = saturate(_Color + waves);
