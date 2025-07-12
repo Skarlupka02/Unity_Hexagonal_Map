@@ -24,7 +24,7 @@ Shader "Custom/Water"
         struct Input
         {
             float2 uv_MainTex;
-            float4 color : COLOR;
+            float3 worldPos;
         };
 
         half _Glossiness;
@@ -40,17 +40,12 @@ Shader "Custom/Water"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float2 uv = IN.uv_MainTex;
-            uv.x = uv.x * 0.0625 + _Time * 0.005;
-            uv.y -= _Time.y * 0.25;
-            float4 noise = tex2D(_MainTex, uv);
+            float2 uv = IN.worldPos.xz;
+            uv.y += _Time.y;
+            float4 noise = tex2D(_MainTex, uv * 0.025);
+            float waves = noise.z;
 
-            float2 uv2 = IN.uv_MainTex;
-            uv2.x = uv2.x * 0.0625 - _Time * 0.0052;
-            uv2.y -+ _Time.y * 0.23;
-            float4 noise2 = tex2D(_MainTex, uv2);
-
-            fixed4 c = saturate(_Color + (noise.r * noise2.a));
+            fixed4 c = saturate(_Color + waves);
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
