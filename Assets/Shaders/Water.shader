@@ -40,10 +40,16 @@ Shader "Custom/Water"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            float2 uv = IN.worldPos.xz;
-            uv.y += _Time.y;
-            float4 noise = tex2D(_MainTex, uv * 0.025);
-            float waves = noise.z;
+            float2 uv1 = IN.worldPos.xz;
+            uv1.y += _Time.y;
+            float4 noise1 = tex2D(_MainTex, uv1 * 0.025);
+
+            float2 uv2 = IN.worldPos.xz;
+            uv2.x += _Time.y;
+            float4 noise2 = tex2D(_MainTex, uv2 * 0.025);
+
+            float waves = noise1.z + noise2.x;
+            waves = smoothstep(0.75, 2, waves);
 
             fixed4 c = saturate(_Color + waves);
             o.Albedo = c.rgb;
