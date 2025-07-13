@@ -40,24 +40,25 @@ Shader "Custom/Water Shore"
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            
+            float shore = IN.uv_MainTex.y;
+            shore = sqrt(shore);
 
-            float2 uv1 = IN.worldPos.xz;
-            uv1.y += _Time.y;
-            float4 noise1 = tex2D(_MainTex, uv1 * 0.025);
+            float2 noiseUV = IN.worldPos.xz + _Time.y * 0.25;
+            float4 noise = tex2D(_MainTex, noiseUV * 0.015);
 
-            float2 uv2 = IN.worldPos.xz;
-            uv2.x += _Time.y;
-            float4 noise2 = tex2D(_MainTex, uv2 * 0.025);
+            float distortion1 = noise.x * (1 - shore);
 
-            float blendWave = sin((IN.worldPos.x + IN.worldPos.z) * 0.1 + (noise1.y + noise2.z) + _Time.y);
-            blendWave *= blendWave;
+            float foam1 = sin((shore + distortion1) * 10 - _Time.y);
+            foam1 *= foam1;
 
-            float waves = lerp(noise1.z, noise1.w, blendWave) + lerp(noise2.x, noise2.y, blendWave);
-            waves = smoothstep(0.75, 2, waves);
+            float distortion2 = noise.x * (1 - shore);
 
-            //fixed4 c = saturate(_Color + waves);
-            fixed4 c = fixed4(IN.uv_MainTex, 1, 1);
+            float foam2 = sin((shore + distortion2) * 10 + _Time.y + 2);
+            foam2 *= foam2 * 0.7;
+
+            float foam = max(foam1, foam2) * shore;
+
+            fixed4 c = saturate(_Color + foam);
             o.Albedo = c.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
