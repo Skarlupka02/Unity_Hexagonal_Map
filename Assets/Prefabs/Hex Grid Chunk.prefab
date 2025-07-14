@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5996791479796384831}
   - component: {fileID: 3742203438079154225}
   - component: {fileID: 4596054373091030883}
-  - component: {fileID: 3495906831496992524}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -100,28 +99,6 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 0
---- !u!64 &3495906831496992524
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539232931882390616}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &617464374600747291
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +249,6 @@ GameObject:
   - component: {fileID: 5705429861841396759}
   - component: {fileID: 551724852109980012}
   - component: {fileID: 5681320298657356197}
-  - component: {fileID: 4010991866397978129}
   m_Layer: 0
   m_Name: Rivers
   m_TagString: Untagged
@@ -360,28 +336,6 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
---- !u!64 &4010991866397978129
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896490059372089087}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2759310974155218217
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +348,6 @@ GameObject:
   - component: {fileID: 9080424976926842388}
   - component: {fileID: 3414777715976313579}
   - component: {fileID: 6077707285274579378}
-  - component: {fileID: 1844422709291024948}
   m_Layer: 0
   m_Name: Roads
   m_TagString: Untagged
@@ -482,28 +435,6 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
---- !u!64 &1844422709291024948
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2759310974155218217}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &3508828495512691029
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +447,6 @@ GameObject:
   - component: {fileID: 6141975470771841565}
   - component: {fileID: 1297999331673398463}
   - component: {fileID: 7776472344778772295}
-  - component: {fileID: 7919068884500243862}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -604,28 +534,6 @@ MonoBehaviour:
   useCollider: 1
   useColors: 1
   useUVCoordinates: 0
---- !u!64 &7919068884500243862
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508828495512691029}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &4401800686241173365
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +546,6 @@ GameObject:
   - component: {fileID: 7039566119614478642}
   - component: {fileID: 4209386634756694640}
   - component: {fileID: 7146969170843005094}
-  - component: {fileID: 6318670603935495499}
   m_Layer: 0
   m_Name: WaterShore
   m_TagString: Untagged
@@ -726,25 +633,3 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
---- !u!64 &6318670603935495499
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4401800686241173365}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
