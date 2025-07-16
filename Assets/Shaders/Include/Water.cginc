@@ -6,7 +6,7 @@
 float Foam(float shore, float2 worldXZ, sampler2D noiseTex)
 {
     //float shore = IN.uv_MainTex.y;
-    shore = sqrt(shore);
+    shore = sqrt(shore) * 0.9;
 
     float2 noiseUV = worldXZ + _Time.y * 0.25;
     float4 noise = tex2D(noiseTex, noiseUV * 0.015);
