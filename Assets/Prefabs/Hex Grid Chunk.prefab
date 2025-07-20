@@ -99,6 +99,7 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 0
+  useUV2Coordinates: 0
 --- !u!1 &617464374600747291
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,6 +135,7 @@ Transform:
   - {fileID: 9200501451306439271}
   - {fileID: 4468278383422357001}
   - {fileID: 721561355909023436}
+  - {fileID: 6440732268998999913}
   - {fileID: 3567731476267303544}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -154,6 +156,7 @@ MonoBehaviour:
   roads: {fileID: 6077707285274579378}
   water: {fileID: 4596054373091030883}
   waterShore: {fileID: 7146969170843005094}
+  estuaries: {fileID: 0}
 --- !u!1 &1665983594076936320
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +339,7 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
+  useUV2Coordinates: 0
 --- !u!1 &2759310974155218217
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +439,7 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
+  useUV2Coordinates: 0
 --- !u!1 &3508828495512691029
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,6 +539,7 @@ MonoBehaviour:
   useCollider: 1
   useColors: 1
   useUVCoordinates: 0
+  useUV2Coordinates: 0
 --- !u!1 &4401800686241173365
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,3 +639,104 @@ MonoBehaviour:
   useCollider: 0
   useColors: 0
   useUVCoordinates: 1
+  useUV2Coordinates: 0
+--- !u!1 &7684759566204703888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6440732268998999913}
+  - component: {fileID: 1113835203122460765}
+  - component: {fileID: 992313536405601985}
+  - component: {fileID: 5012089691881324409}
+  m_Layer: 0
+  m_Name: Estuaries
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6440732268998999913
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684759566204703888}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1884638247544771568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1113835203122460765
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684759566204703888}
+  m_Mesh: {fileID: 0}
+--- !u!23 &992313536405601985
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684759566204703888}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: dadc053bbf4ab6547ac4f1fa4e78f85f, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5012089691881324409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684759566204703888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac1a5dfd929264eade2a15933104cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useCollider: 0
+  useColors: 0
+  useUVCoordinates: 1
+  useUV2Coordinates: 1

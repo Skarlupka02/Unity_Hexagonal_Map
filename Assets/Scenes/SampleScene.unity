@@ -3801,6 +3801,7 @@ MonoBehaviour:
   useCollider: 1
   useColors: 1
   useUVCoordinates: 0
+  useUV2Coordinates: 0
 --- !u!23 &1128873462
 MeshRenderer:
   m_ObjectHideFlags: 0
