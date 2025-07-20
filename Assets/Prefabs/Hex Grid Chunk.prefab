@@ -156,7 +156,7 @@ MonoBehaviour:
   roads: {fileID: 6077707285274579378}
   water: {fileID: 4596054373091030883}
   waterShore: {fileID: 7146969170843005094}
-  estuaries: {fileID: 0}
+  estuaries: {fileID: 5012089691881324409}
 --- !u!1 &1665983594076936320
 GameObject:
   m_ObjectHideFlags: 0
