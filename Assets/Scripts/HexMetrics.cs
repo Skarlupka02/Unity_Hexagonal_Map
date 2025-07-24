@@ -24,6 +24,7 @@ public class HexMetrics : MonoBehaviour
     public const float waterElevationOffset = -0.5f;
     public const float waterFactor = 0.6f;
     public const float waterBlendFactor = 1f - waterFactor;
+    public const float hashGridScale = 0.25f;
 
     public const int chunkSizeX = 5, chunkSizeZ = 5;
     public const int terracesPerSlope = 2;
@@ -133,6 +134,16 @@ public class HexMetrics : MonoBehaviour
             hashGrid[i] = Random.value;
         }
         Random.state = currentState;
+    }
+
+    public static float SampleHashGrid(Vector3 position)
+    {
+        int x = (int)(position.x * hashGridScale) % hashGridSize;
+        if(x < 0) x += hashGridSize;
+        int z = (int)(position.z * hashGridScale) % hashGridSize;
+        if(z < 0) z += hashGridSize;
+
+        return hashGrid[x + z * hashGridSize];
     }
 
 }
