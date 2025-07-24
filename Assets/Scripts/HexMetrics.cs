@@ -6,7 +6,7 @@ public class HexMetrics : MonoBehaviour
 {
     public static Texture2D noiseSource;
 
-    static float[] hashGrid;
+    static HexHash[] hashGrid;
 
     public const float elevationPerturbStrength = 1.5f;
     public const float cellPerturbStrength = 4f;
@@ -126,17 +126,17 @@ public class HexMetrics : MonoBehaviour
 
     public static void InitializeHashGrid(int seed)
     {
-        hashGrid = new float[hashGridSize * hashGridSize];
+        hashGrid = new HexHash[hashGridSize * hashGridSize];
         Random.State currentState = Random.state;
         Random.InitState(seed);
         for (int i = 0; i < hashGrid.Length; i++) 
         { 
-            hashGrid[i] = Random.value;
+            hashGrid[i] = HexHash.Create();
         }
         Random.state = currentState;
     }
 
-    public static float SampleHashGrid(Vector3 position)
+    public static HexHash SampleHashGrid(Vector3 position)
     {
         int x = (int)(position.x * hashGridScale) % hashGridSize;
         if(x < 0) x += hashGridSize;
