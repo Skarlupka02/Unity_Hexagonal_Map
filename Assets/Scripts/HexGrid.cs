@@ -8,36 +8,30 @@ public class HexGrid : MonoBehaviour
 {
     public HexGridChunk chunkPrefab;
     public Texture2D noiseSourse;
-    //public int cellCountX = 4;
-    //public int cellCountZ = 3;
 
     int cellCountX, cellCountZ;
     public int chunkCountX = 4, chunkCountZ = 3;
+    public int seed;
 
     public HexCell cellPrefab;
     public Text cellLabelPrefab;
 
     public Color defaultColor = Color.white;
-    //public Color touchedColor = Color.magenta;
 
     HexCell[] cells;
     HexGridChunk[] chunks;
-    //Canvas gridCanvas;
-    //HexMesh hexMesh;
 
     private void Awake()
     {
         HexMetrics.noiseSource = noiseSourse;
-
-        //hexMesh= GetComponentInChildren<HexMesh>();
-        //gridCanvas = GetComponentInChildren<Canvas>();
+        HexMetrics.InitializeHashGrid(seed);
 
         cellCountX = chunkCountX * HexMetrics.chunkSizeX;
         cellCountZ = chunkCountZ * HexMetrics.chunkSizeZ;
 
         CreateChunks();
         CreateCells();
-        
+       
 
     }
     void CreateCells()
@@ -145,7 +139,7 @@ public class HexGrid : MonoBehaviour
         //hexMesh.Triangulate(cells);
     }
     #endregion
-    // Start is called before the first frame update
+
     void Start()
     {
         //hexMesh.Triangulate(cells);
@@ -153,7 +147,12 @@ public class HexGrid : MonoBehaviour
 
     private void OnEnable()
     {
-        HexMetrics.noiseSource = noiseSourse;
+        if (!HexMetrics.noiseSource)
+        {
+            HexMetrics.noiseSource = noiseSourse;
+            HexMetrics.InitializeHashGrid(seed);
+        }
+
     }
     public void ShowUI(bool visible)
     {

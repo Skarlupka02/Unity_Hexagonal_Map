@@ -5,6 +5,9 @@ using UnityEngine;
 public class HexMetrics : MonoBehaviour
 {
     public static Texture2D noiseSource;
+
+    static float[] hashGrid;
+
     public const float elevationPerturbStrength = 1.5f;
     public const float cellPerturbStrength = 4f;
     public const float noiseScale = 0.003f;
@@ -25,6 +28,7 @@ public class HexMetrics : MonoBehaviour
     public const int chunkSizeX = 5, chunkSizeZ = 5;
     public const int terracesPerSlope = 2;
     public const int terracesSteps = terracesPerSlope * 2 + 1;
+    public const int hashGridSize = 256;
 
     static Vector3[] corners =
     {
@@ -119,6 +123,16 @@ public class HexMetrics : MonoBehaviour
         return (corners[(int)direction] + corners[(int)direction + 1]) * waterBlendFactor;
     }
 
-
+    public static void InitializeHashGrid(int seed)
+    {
+        hashGrid = new float[hashGridSize * hashGridSize];
+        Random.State currentState = Random.state;
+        Random.InitState(seed);
+        for (int i = 0; i < hashGrid.Length; i++) 
+        { 
+            hashGrid[i] = Random.value;
+        }
+        Random.state = currentState;
+    }
 
 }
