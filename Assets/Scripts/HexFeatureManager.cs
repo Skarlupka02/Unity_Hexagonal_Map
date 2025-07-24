@@ -1,13 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HexFeatureManager : MonoBehaviour
 {
 
     public Transform featurePrefab;
+    Transform container;
 
-    public void Clear() { }
+    public void Clear() 
+    {
+        if (container)
+        {
+            Destroy(container.gameObject);
+        }
+        container = new GameObject("Features Container").transform;
+        container.SetParent(transform, false);
+    }
 
     public void Apply() { }
 
@@ -16,6 +26,7 @@ public class HexFeatureManager : MonoBehaviour
         Transform instance = Instantiate(featurePrefab);
         position.y += instance.localScale.y * 0.5f;
         instance.localPosition = HexMetrics.Perturb(position);
+        instance.SetParent(container, false);
     }
 
     public void RemoveFeature() { }
