@@ -12,6 +12,7 @@ public class HexGridChunk : MonoBehaviour
     Canvas gridCanvas;
     LineRenderer lineRenderer;
     MeshFilter meshFilter;
+    public HexFeatureManager features;
 
     private void Awake()
     {
@@ -54,6 +55,7 @@ public class HexGridChunk : MonoBehaviour
         water.Clear();
         waterShore.Clear();
         estuaries.Clear();
+        features.Clear();
 
         for (int i = 0; i < cells.Length; i++)
         {
@@ -68,6 +70,7 @@ public class HexGridChunk : MonoBehaviour
         water.Apply();
         waterShore.Apply();
         estuaries.Apply();
+        features.Apply();
     }
 
     void Triangulate(HexCell cell)
@@ -76,6 +79,7 @@ public class HexGridChunk : MonoBehaviour
         {
             Triangulate(d, cell);
         }
+        features.AddFeature(cell.Position);
     }
 
     void Triangulate(HexDirection direction, HexCell cell)
