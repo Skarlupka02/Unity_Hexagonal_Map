@@ -11,7 +11,12 @@ public class HexFeatureManager : MonoBehaviour
 
     public void Apply() { }
 
-    public void AddFeature(Vector3 position) { }
+    public void AddFeature(Vector3 position) 
+    {
+        Transform instance = Instantiate(featurePrefab);
+        position.y += instance.localScale.y * 0.5f;
+        instance.localPosition = HexMetrics.Perturb(position);
+    }
 
     public void RemoveFeature() { }
 
