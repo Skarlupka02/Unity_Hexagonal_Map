@@ -79,7 +79,7 @@ public class HexGridChunk : MonoBehaviour
         {
             Triangulate(d, cell);
         }
-        if (!cell.IsUnderwater && !cell.HasRiver && !cell.HasRoads) features.AddFeature(cell.Position);
+        if (!cell.IsUnderwater && !cell.HasRiver && !cell.HasRoads) features.AddFeature(cell, cell.Position);
 
     }
 
@@ -112,7 +112,7 @@ public class HexGridChunk : MonoBehaviour
         {
             TriangulateWithoutRiver(direction, cell, center, e);
 
-            if (!cell.IsUnderwater && !cell.HasRoadThroughEdge(direction)) features.AddFeature((center + e.v1 + e.v5) * (1f / 3f));
+            if (!cell.IsUnderwater && !cell.HasRoadThroughEdge(direction)) features.AddFeature(cell, (center + e.v1 + e.v5) * (1f / 3f));
         }
 
         if (direction <= HexDirection.SE)
@@ -523,7 +523,7 @@ public class HexGridChunk : MonoBehaviour
         TriangulateEdgeStrip(m, cell.Color, e, cell.Color);
         TriangulateEdgeFan(center, m, cell.Color);
 
-        if (!cell.IsUnderwater && !cell.HasRoadThroughEdge(direction)) features.AddFeature((center + e.v1 + e.v5) * (1f / 3f));
+        if (!cell.IsUnderwater && !cell.HasRoadThroughEdge(direction)) features.AddFeature(cell, (center + e.v1 + e.v5) * (1f / 3f));
     }
 
     void TriangulateRiverQuad( Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4, float y1, float y2, float v, bool reversed )

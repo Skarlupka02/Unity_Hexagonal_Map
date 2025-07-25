@@ -31,7 +31,7 @@ public class HexMapEditor : MonoBehaviour
 
     void Awake()
     {
-        SelectColor(0);
+        SelectColor(-1);
     }
     void Update()
     {
