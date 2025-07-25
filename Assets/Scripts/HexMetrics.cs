@@ -41,6 +41,14 @@ public class HexMetrics : MonoBehaviour
         new Vector3(-innerRadius, 0f, 0.5f * outerRadius),
         new Vector3(0f, 0f, outerRadius)
     };
+
+    static float[][] featureThresholds =
+    {
+        new float[] {0.0f, 0.0f, 0.4f },
+        new float[] {0.0f, 0.4f, 0.6f },
+        new float[] {0.4f, 0.6f, 0.8f }
+    };
+
     public static Vector3 GetFirstCorner (HexDirection direction)
     {
         return corners[(int)direction];
@@ -145,5 +153,7 @@ public class HexMetrics : MonoBehaviour
 
         return hashGrid[x + z * hashGridSize];
     }
+
+    public static float[] GetFeatureThresholds(int level) { return featureThresholds[level]; }
 
 }

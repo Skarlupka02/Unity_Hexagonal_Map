@@ -687,9 +687,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   urbanPrefabs:
-  - {fileID: 2495497135794629416, guid: 8b63b84bd31a925429de32dda69232ab, type: 3}
-  - {fileID: 2495497135794629416, guid: 71bb822d355a5ba4b993d0a996b965fc, type: 3}
   - {fileID: 2495497135794629416, guid: 3e4cefd7938cdcc409be9b43879862ed, type: 3}
+  - {fileID: 2495497135794629416, guid: 71bb822d355a5ba4b993d0a996b965fc, type: 3}
+  - {fileID: 2495497135794629416, guid: 8b63b84bd31a925429de32dda69232ab, type: 3}
 --- !u!1 &7684759566204703888
 GameObject:
   m_ObjectHideFlags: 0
