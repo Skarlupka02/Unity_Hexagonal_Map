@@ -14,6 +14,7 @@ public class HexCell : MonoBehaviour
 
     int elevation = int.MinValue;
     int waterLevel;
+    int urbanLevel;
 
 
     [SerializeField]
@@ -119,6 +120,19 @@ public class HexCell : MonoBehaviour
     {
         int difference = elevation - GetNeighbor(direction).elevation;
         return difference >= 0 ? difference : -difference;
+    }
+
+    public int UrbanLevel
+    {
+        get { return urbanLevel; }
+        set
+        {
+            if (urbanLevel != value) 
+            {
+                urbanLevel = value;
+                RefreshSelfOnly();
+            }
+        }
     }
 
     #region River methods
