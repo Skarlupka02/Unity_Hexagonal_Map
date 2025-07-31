@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1458548589215070404}
   - component: {fileID: 9190124422216800202}
   m_Layer: 0
-  m_Name: Features High Cube 1
+  m_Name: Plant Low Cube 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 5, z: 2}
+  m_LocalScale: {x: 0.75, y: 1, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e71a7de2518fa44590ac04688df3729, type: 2}
+  - {fileID: 2100000, guid: fc2dfe4cbec034e48a363c5c5b386053, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

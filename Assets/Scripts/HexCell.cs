@@ -14,7 +14,7 @@ public class HexCell : MonoBehaviour
 
     int elevation = int.MinValue;
     int waterLevel;
-    int urbanLevel;
+    int urbanLevel, farmLevel, plantLevel;
 
 
     [SerializeField]
@@ -130,6 +130,32 @@ public class HexCell : MonoBehaviour
             if (urbanLevel != value) 
             {
                 urbanLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
+
+    public int FarmLevel
+    {
+        get { return farmLevel; }
+        set 
+        {
+            if (farmLevel != value) 
+            {
+                farmLevel = value;
+                RefreshSelfOnly();
+            }
+        }
+    }
+
+    public int PlantLevel
+    {
+        get { return plantLevel; }
+        set
+        {
+            if(plantLevel != value)
+            {
+                plantLevel = value;
                 RefreshSelfOnly();
             }
         }

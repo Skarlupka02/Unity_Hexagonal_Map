@@ -7,7 +7,7 @@ public class HexFeatureManager : MonoBehaviour
 {
 
     //public Transform[][] urbanPrefabs;
-    public HexFeatureCollection[] urbanCollections;
+    public HexFeatureCollection[] urbanCollections, farmCollections, plantCollections;
 
     Transform container;
 
