@@ -686,10 +686,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162616107a380f64b8168f313f77e78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  urbanPrefabs:
-  - {fileID: 2495497135794629416, guid: 3e4cefd7938cdcc409be9b43879862ed, type: 3}
-  - {fileID: 2495497135794629416, guid: 71bb822d355a5ba4b993d0a996b965fc, type: 3}
-  - {fileID: 2495497135794629416, guid: 8b63b84bd31a925429de32dda69232ab, type: 3}
+  urbanCollections:
+  - prefabs:
+    - {fileID: 2495497135794629416, guid: 3e4cefd7938cdcc409be9b43879862ed, type: 3}
+    - {fileID: 2495497135794629416, guid: a7bae1f418adda94c8c8250e8da27341, type: 3}
+  - prefabs:
+    - {fileID: 2495497135794629416, guid: 71bb822d355a5ba4b993d0a996b965fc, type: 3}
+    - {fileID: 2495497135794629416, guid: 5729c4bb7490d5f4fa1f1972a8c5ad4b, type: 3}
+  - prefabs:
+    - {fileID: 2495497135794629416, guid: 8b63b84bd31a925429de32dda69232ab, type: 3}
+    - {fileID: 2495497135794629416, guid: 1b0643fa765e0ed45999b88bcd0d86e4, type: 3}
 --- !u!1 &7684759566204703888
 GameObject:
   m_ObjectHideFlags: 0
